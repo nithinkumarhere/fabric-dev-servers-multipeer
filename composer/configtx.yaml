@@ -23,14 +23,14 @@ Profiles:
             ComposerConsortium:
                 Organizations:
                     - *Org1
-		    - *Org2
+                    - *Org2
     ComposerChannel:
         Consortium: ComposerConsortium
         Application:
             <<: *ApplicationDefaults
             Organizations:
                 - *Org1
-		- *Org2
+                - *Org2
 
 ################################################################################
 #

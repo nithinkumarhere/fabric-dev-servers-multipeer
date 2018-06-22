@@ -74,14 +74,14 @@ cat << EOF > /tmp/.connection.json
     },
     "peers": [
         {
-            "requestURL": "grpc://:10051",
-            "eventURL": "grpc://:10053"
+            "requestURL": "grpc://192.168.1.224:10051",
+            "eventURL": "grpc://192.168.1.224:10053"
         }, {
-            "requestURL": "grpc://:11051",
-            "eventURL": "grpc://:11053"
+            "requestURL": "grpc://192.168.1.224:11051",
+            "eventURL": "grpc://192.168.1.224:11053"
         }, {
-            "requestURL": "grpc://localhost:12051",
-            "eventURL": "grpc://:12053"
+            "requestURL": "grpc://192.168.1.224:12051",
+            "eventURL": "grpc://192.168.1.224:12053"
         }
     ],
     "channel": "composerchannel",
