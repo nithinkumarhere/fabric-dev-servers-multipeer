@@ -50,16 +50,57 @@ cat << EOF > /tmp/.connection.json
 }
 EOF
 
-PRIVATE_KEY="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/7fe58742a0b6d1102c74293808f1736dea010d3451f9e1a804c0b86ecf90baa0_sk
+PRIVATE_KEY="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/*sk
 CERT="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem
 
-if composer card list -n PeerAdmin@hlfv1 > /dev/null; then
-    composer card delete -n PeerAdmin@hlfv1
+if composer card list -n Org1@hlfv1 > /dev/null; then
+    composer card delete -n Org1@hlfv1
 fi
-composer card create -p /tmp/.connection.json -u PeerAdmin -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file /tmp/PeerAdmin@hlfv1.card
-composer card import --file /tmp/PeerAdmin@hlfv1.card 
+composer card create -p /tmp/.connection.json -u PeerAdmin -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file /tmp/Org1@hlfv1.card
+composer card import --file /tmp/Org1@hlfv1.card 
 
 rm -rf /tmp/.connection.json
+
+cat << EOF > /tmp/.connection.json
+{
+    "name": "hlfv1",
+    "type": "hlfv1",
+    "orderers": [
+       { "url" : "grpc://localhost:7050" }
+    ],
+    "ca": { 
+        "url": "http://localhost:7054", 
+        "name": "ca.org2.example.com"
+    },
+    "peers": [
+        {
+            "requestURL": "grpc://:10051",
+            "eventURL": "grpc://:10053"
+        }, {
+            "requestURL": "grpc://:11051",
+            "eventURL": "grpc://:11053"
+        }, {
+            "requestURL": "grpc://localhost:12051",
+            "eventURL": "grpc://:12053"
+        }
+    ],
+    "channel": "composerchannel",
+    "mspID": "Org2MSP",
+    "timeout": 300
+}
+EOF
+
+PRIVATE_KEY="${DIR}"/composer/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore/*sk
+CERT="${DIR}"/composer/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/Admin@org2.example.com-cert.pem
+
+if composer card list -n Org2@hlfv1 > /dev/null; then
+    composer card delete -n Org2@hlfv1
+fi
+composer card create -p /tmp/.connection.json -u PeerAdmin -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file /tmp/Org2@hlfv1.card
+composer card import --file /tmp/Org2@hlfv1.card 
+
+rm -rf /tmp/.connection.json
+
 
 echo "Hyperledger Composer PeerAdmin card has been imported"
 composer card list
