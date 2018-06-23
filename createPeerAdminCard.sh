@@ -5,6 +5,11 @@ set -e
 # Grab the current directory
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# Grab the file names of the keystore keys
+ORG1-MSP-KEY="$(ls composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/)"
+ORG2-MSP-KEY="$(ls composer/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore/)"
+
+
 echo
 # check that the composer command exists at a version >v0.14
 if hash composer 2>/dev/null; then
@@ -86,13 +91,13 @@ cat << EOF > org1connection.json
             "eventURL": "grpc://localhost:9053",
             "hostnameOverride": "peer2.org1.example.com"
         }, {
-            "requestURL": "grpc://192.168.1.224:10051",
+            "requestURL": "grpc://{IP-HOST-2}:10051",
             "hostnameOverride": "peer0.org2.example.com"
         }, {
-            "requestURL": "grpc://192.168.1.224:11051",
+            "requestURL": "grpc://{IP-HOST-2}:11051",
             "hostnameOverride": "peer1.org2.example.com"
         }, {
-            "requestURL": "grpc://192.168.1.224:12051",
+            "requestURL": "grpc://{IP-HOST-2}:12051",
             "hostnameOverride": "peer2.org2.example.com"
         }
     ],
@@ -102,7 +107,7 @@ cat << EOF > org1connection.json
 }
 EOF
 
-PRIVATE_KEY="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/9b8e6eec381a969ab0942aa88e3b8f853b22276b7f27c982f03eaedc4674577b_sk
+PRIVATE_KEY="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/"${ORG1-MSP-KEY}"
 CERT="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem
 
 if composer card list -n @byfn-network-org1-only > /dev/null; then
@@ -132,23 +137,23 @@ cat << EOF > org2onlyconnection.json
         }
     ],
     "ca": {
-        "url": "http://192.168.1.224:7054",
+        "url": "http://{IP-HOST-2}:7054",
         "name": "ca.org2.example.com",
         "hostnameOverride": "ca.org2.example.com"
     },
     "peers": [
         {
-            "requestURL": "grpc://192.168.1.224:10051",
-            "eventURL": "grpc://192.168.1.224:10053",
+            "requestURL": "grpc://{IP-HOST-2}:10051",
+            "eventURL": "grpc://{IP-HOST-2}:10053",
             "hostnameOverride": "peer0.org2.example.com"
         }, {
-            "requestURL": "grpc://192.168.1.224:11051",
-            "eventURL": "grpc://192.168.1.224:11053",
+            "requestURL": "grpc://{IP-HOST-2}:11051",
+            "eventURL": "grpc://{IP-HOST-2}:11053",
             "hostnameOverride": "peer1.org2.example.com"
 
         }, {
-            "requestURL": "grpc://192.168.1.224:12051",
-            "eventURL": "grpc://192.168.1.224:12053",
+            "requestURL": "grpc://{IP-HOST-2}:12051",
+            "eventURL": "grpc://{IP-HOST-2}:12053",
             "hostnameOverride": "peer2.org2.example.com"
         }
     ],
@@ -169,7 +174,7 @@ cat << EOF > org2connection.json
         }
     ],
     "ca": {
-        "url": "http://192.168.1.224:7054",
+        "url": "http://{IP-HOST-2}:7054",
         "name": "ca.org2.example.com",
         "hostnameOverride": "ca.org2.example.com"
     },
@@ -184,16 +189,16 @@ cat << EOF > org2connection.json
             "requestURL": "grpc://localhost:9051",
             "hostnameOverride": "peer2.org1.example.com"
         }, {
-            "requestURL": "grpc://192.168.1.224:10051",
-            "eventURL": "grpc://192.168.1.224:10053",
+            "requestURL": "grpc://{IP-HOST-2}:10051",
+            "eventURL": "grpc://{IP-HOST-2}:10053",
             "hostnameOverride": "peer0.org2.example.com"
         }, {
-            "requestURL": "grpc://192.168.1.224:11051",
-            "eventURL": "grpc://192.168.1.224:11053",
+            "requestURL": "grpc://{IP-HOST-2}:11051",
+            "eventURL": "grpc://{IP-HOST-2}:11053",
             "hostnameOverride": "peer1.org2.example.com"
         }, {
-            "requestURL": "grpc://192.168.1.224:12051",
-            "eventURL": "grpc://192.168.1.224:12053",
+            "requestURL": "grpc://{IP-HOST-2}:12051",
+            "eventURL": "grpc://{IP-HOST-2}:12053",
             "hostnameOverride": "peer2.org2.example.com"
         }
     ],
@@ -203,7 +208,7 @@ cat << EOF > org2connection.json
 }
 EOF
 
-PRIVATE_KEY="${DIR}"/composer/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore/ba6e24a7945349c476bd90869ff9dad352653ffb36a4ef30663461b945cb4eb7_sk
+PRIVATE_KEY="${DIR}"/composer/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore/"${ORG2-MSP-KEY}"
 CERT="${DIR}"/composer/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/Admin@org2.example.com-cert.pem
 
 

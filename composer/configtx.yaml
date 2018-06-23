@@ -114,8 +114,8 @@ Orderer: &OrdererDefaults
     OrdererType: solo
 
     Addresses:
-        # - {IP OF ORDERER}:7050
-        - 192.168.1.222:7050
+        # - orderer.example.com:7050
+        - {IP-HOST-2}:7050
 
     # Batch Timeout: The amount of time to wait before creating a batch
     BatchTimeout: 2s
