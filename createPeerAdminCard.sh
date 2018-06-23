@@ -87,16 +87,13 @@ cat << EOF > /tmp/.org1connection.json
             "hostnameOverride": "peer2.org1.example.com"
         }, {
             "requestURL": "grpc://192.168.1.224:10051",
-            "eventURL": "grpc://192.168.1.224:10053",
             "hostnameOverride": "peer0.org2.example.com"
         }, {
             "requestURL": "grpc://192.168.1.224:11051",
-            "eventURL": "grpc://192.168.1.224:11053",
             "hostnameOverride": "peer1.org2.example.com"
 
         }, {
             "requestURL": "grpc://192.168.1.224:12051",
-            "eventURL": "grpc://192.168.1.224:12053",
             "hostnameOverride": "peer2.org2.example.com"
         }
     ],
@@ -193,16 +190,13 @@ cat << EOF > /tmp/.org2connection.json
             "hostnameOverride": "peer2.org1.example.com"
         }, {
             "requestURL": "grpc://192.168.1.224:10051",
-            "eventURL": "grpc://192.168.1.224:10053",
             "hostnameOverride": "peer0.org2.example.com"
         }, {
             "requestURL": "grpc://192.168.1.224:11051",
-            "eventURL": "grpc://192.168.1.224:11053",
             "hostnameOverride": "peer1.org2.example.com"
 
         }, {
             "requestURL": "grpc://192.168.1.224:12051",
-            "eventURL": "grpc://192.168.1.224:12053",
             "hostnameOverride": "peer2.org2.example.com"
         }
     ],
