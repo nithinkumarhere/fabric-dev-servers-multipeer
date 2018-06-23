@@ -21,7 +21,7 @@ else
 fi
 # need to get the certificate
 
-cat << EOF > /tmp/.org1onlyconnection.json
+cat << EOF > org1onlyconnection.json
 {
     "name": "byfn-network-org1-only",
     "type": "hlfv1",
@@ -57,7 +57,7 @@ cat << EOF > /tmp/.org1onlyconnection.json
 }
 EOF
 
-cat << EOF > /tmp/.org1connection.json
+cat << EOF > org1connection.json
 {
     "name": "byfn-network-org1",
     "type": "hlfv1",
@@ -91,7 +91,6 @@ cat << EOF > /tmp/.org1connection.json
         }, {
             "requestURL": "grpc://192.168.1.224:11051",
             "hostnameOverride": "peer1.org2.example.com"
-
         }, {
             "requestURL": "grpc://192.168.1.224:12051",
             "hostnameOverride": "peer2.org2.example.com"
@@ -114,16 +113,15 @@ if composer card list -n @byfn-network-org1 > /dev/null; then
     composer card delete -n @byfn-network-org1
 fi
 
-composer card create -p /tmp/.org1onlyconnection.json -u PeerAdmin -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file /tmp/PeerAdmin@byfn-network-org1-only.card
+composer card create -p org1onlyconnection.json -u PeerAdmin -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file /tmp/PeerAdmin@byfn-network-org1-only.card
 composer card import --file /tmp/PeerAdmin@byfn-network-org1-only.card
 
-composer card create -p /tmp/.org1connection.json -u PeerAdmin -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file /tmp/PeerAdmin@byfn-network-org1.card
+composer card create -p org1connection.json -u PeerAdmin -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file /tmp/PeerAdmin@byfn-network-org1.card
 composer card import --file /tmp/PeerAdmin@byfn-network-org1.card
 
-rm -rf /tmp/.org1onlyconnection.json
-rm -rf /tmp/.org1connection.json
+rm -rf org1onlyconnection.json
 
-cat << EOF > /tmp/.org2onlyconnection.json
+cat << EOF > org2onlyconnection.json
 {
     "name": "byfn-network-org2-only",
     "type": "hlfv1",
@@ -160,7 +158,7 @@ cat << EOF > /tmp/.org2onlyconnection.json
 }
 EOF
 
-cat << EOF > /tmp/.org2connection.json
+cat << EOF > org2connection.json
 {
     "name": "byfn-network-org2",
     "type": "hlfv1",
@@ -178,25 +176,24 @@ cat << EOF > /tmp/.org2connection.json
     "peers": [
         {
             "requestURL": "grpc://localhost:7051",
-            "eventURL": "grpc://localhost:7053",
             "hostnameOverride": "peer0.org1.example.com"
         }, {
             "requestURL": "grpc://localhost:8051",
-            "eventURL": "grpc://localhost:8053",
             "hostnameOverride": "peer1.org1.example.com"
         }, {
             "requestURL": "grpc://localhost:9051",
-            "eventURL": "grpc://localhost:9053",
             "hostnameOverride": "peer2.org1.example.com"
         }, {
             "requestURL": "grpc://192.168.1.224:10051",
+            "eventURL": "grpc://192.168.1.224:10053",
             "hostnameOverride": "peer0.org2.example.com"
         }, {
             "requestURL": "grpc://192.168.1.224:11051",
+            "eventURL": "grpc://192.168.1.224:11053",
             "hostnameOverride": "peer1.org2.example.com"
-
         }, {
             "requestURL": "grpc://192.168.1.224:12051",
+            "eventURL": "grpc://192.168.1.224:12053",
             "hostnameOverride": "peer2.org2.example.com"
         }
     ],
@@ -218,14 +215,13 @@ if composer card list -n @byfn-network-org2 > /dev/null; then
     composer card delete -n @byfn-network-org2
 fi
 
-composer card create -p /tmp/.org2onlyconnection.json -u PeerAdmin -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file /tmp/PeerAdmin@byfn-network-org2-only.card
+composer card create -p org2onlyconnection.json -u PeerAdmin -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file /tmp/PeerAdmin@byfn-network-org2-only.card
 composer card import --file /tmp/PeerAdmin@byfn-network-org2-only.card
 
-composer card create -p /tmp/.org2connection.json -u PeerAdmin -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file /tmp/PeerAdmin@byfn-network-org2.card
+composer card create -p org2connection.json -u PeerAdmin -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file /tmp/PeerAdmin@byfn-network-org2.card
 composer card import --file /tmp/PeerAdmin@byfn-network-org2.card
 
-rm -rf /tmp/.org2onlyconnection.json
-rm -rf /tmp/.org2connection.json
+rm -rf org2onlyconnection.json
 
 echo "Hyperledger Composer PeerAdmin card has been imported"
 composer card list
