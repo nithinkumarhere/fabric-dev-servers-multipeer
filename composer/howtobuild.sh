@@ -16,5 +16,5 @@ ORG1KEY="$(ls crypto-config/peerOrganizations/org1.example.com/ca/ | grep 'sk$')
 ORG2KEY="$(ls crypto-config/peerOrganizations/org2.example.com/ca/ | grep 'sk$')"
 
 sed -i -e "s/{ORG1-CA-KEY}/$ORG1KEY/g" docker-compose.yml
-sed -i -e "s/{ORG2-CA-KEY}/$ORG2KEY/g" docker-compose-part2.yml
+sed -i -e "s/{ORG2-CA-KEY}/$ORG2KEY/g" docker-compose-peer2.yml
 
