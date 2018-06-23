@@ -106,7 +106,7 @@ cat << EOF > /tmp/.org1connection.json
 }
 EOF
 
-PRIVATE_KEY="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/7989e583251be50c5ecddda7ce201e7cb6ab1782ca67367971b72fb1c9e3da5f_sk
+PRIVATE_KEY="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/9b8e6eec381a969ab0942aa88e3b8f853b22276b7f27c982f03eaedc4674577b_sk
 CERT="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem
 
 if composer card list -n @byfn-network-org1-only > /dev/null; then
@@ -212,7 +212,7 @@ cat << EOF > /tmp/.org2connection.json
 }
 EOF
 
-PRIVATE_KEY="${DIR}"/composer/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore/898c2eb7eabc56b35a5d1d53cb6c0ce0fa2ec2c40a0f3ff6250f46f9c31676c7_sk
+PRIVATE_KEY="${DIR}"/composer/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore/ba6e24a7945349c476bd90869ff9dad352653ffb36a4ef30663461b945cb4eb7_sk
 CERT="${DIR}"/composer/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/Admin@org2.example.com-cert.pem
 
 
