@@ -19,29 +19,85 @@ else
     echo 'Need to have composer-cli installed at v0.15 or greater'
     exit 1
 fi
-# need to get the certificate 
+# need to get the certificate
 
-cat << EOF > /tmp/.connection.json
+cat << EOF > /tmp/.org1onlyconnection.json
 {
-    "name": "hlfv1",
+    "name": "byfn-network-org1-only",
     "type": "hlfv1",
     "orderers": [
-       { "url" : "grpc://localhost:7050" }
+        {
+            "url" : "grpc://localhost:7050",
+            "hostnameOverride" : "orderer.example.com"
+        }
     ],
-    "ca": { 
-        "url": "http://localhost:7054", 
-        "name": "ca.org1.example.com"
+    "ca": {
+        "url": "http://localhost:7054",
+        "name": "ca.org1.example.com",
+        "hostnameOverride": "ca.org1.example.com"
     },
     "peers": [
         {
             "requestURL": "grpc://localhost:7051",
-            "eventURL": "grpc://localhost:7053"
+            "eventURL": "grpc://localhost:7053",
+            "hostnameOverride": "peer0.org1.example.com"
         }, {
             "requestURL": "grpc://localhost:8051",
-            "eventURL": "grpc://localhost:8053"
+            "eventURL": "grpc://localhost:8053",
+            "hostnameOverride": "peer1.org1.example.com"
         }, {
             "requestURL": "grpc://localhost:9051",
-            "eventURL": "grpc://localhost:9053"
+            "eventURL": "grpc://localhost:9053",
+            "hostnameOverride": "peer2.org1.example.com"
+        }
+    ],
+    "channel": "composerchannel",
+    "mspID": "Org1MSP",
+    "timeout": 300
+}
+EOF
+
+cat << EOF > /tmp/.org1connection.json
+{
+    "name": "byfn-network-org1",
+    "type": "hlfv1",
+    "orderers": [
+        {
+            "url" : "grpc://localhost:7050",
+            "hostnameOverride" : "orderer.example.com"
+        }
+    ],
+    "ca": {
+        "url": "http://localhost:7054",
+        "name": "ca.org1.example.com",
+        "hostnameOverride": "ca.org1.example.com"
+    },
+    "peers": [
+        {
+            "requestURL": "grpc://localhost:7051",
+            "eventURL": "grpc://localhost:7053",
+            "hostnameOverride": "peer0.org1.example.com"
+        }, {
+            "requestURL": "grpc://localhost:8051",
+            "eventURL": "grpc://localhost:8053",
+            "hostnameOverride": "peer1.org1.example.com"
+        }, {
+            "requestURL": "grpc://localhost:9051",
+            "eventURL": "grpc://localhost:9053",
+            "hostnameOverride": "peer2.org1.example.com"
+        }, {
+            "requestURL": "grpc://192.168.1.224:10051",
+            "eventURL": "grpc://192.168.1.224:10053",
+            "hostnameOverride": "peer0.org2.example.com"
+        }, {
+            "requestURL": "grpc://192.168.1.224:11051",
+            "eventURL": "grpc://192.168.1.224:11053",
+            "hostnameOverride": "peer1.org2.example.com"
+
+        }, {
+            "requestURL": "grpc://192.168.1.224:12051",
+            "eventURL": "grpc://192.168.1.224:12053",
+            "hostnameOverride": "peer2.org2.example.com"
         }
     ],
     "channel": "composerchannel",
@@ -53,35 +109,101 @@ EOF
 PRIVATE_KEY="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/7989e583251be50c5ecddda7ce201e7cb6ab1782ca67367971b72fb1c9e3da5f_sk
 CERT="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem
 
-if composer card list -n Org1@hlfv1 > /dev/null; then
-    composer card delete -n Org1@hlfv1
+if composer card list -n @byfn-network-org1-only > /dev/null; then
+    composer card delete -n @byfn-network-org1-only
 fi
-composer card create -p /tmp/.connection.json -u Org1 -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file /tmp/Org1@hlfv1.card
-composer card import --file /tmp/Org1@hlfv1.card 
 
-rm -rf /tmp/.connection.json
+if composer card list -n @byfn-network-org1 > /dev/null; then
+    composer card delete -n @byfn-network-org1
+fi
 
-cat << EOF > /tmp/.connection.json
+composer card create -p /tmp/.org1onlyconnection.json -u PeerAdmin -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file /tmp/PeerAdmin@byfn-network-org1-only.card
+composer card import --file /tmp/PeerAdmin@byfn-network-org1-only.card
+
+composer card create -p /tmp/.org1connection.json -u PeerAdmin -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file /tmp/PeerAdmin@byfn-network-org1.card
+composer card import --file /tmp/PeerAdmin@byfn-network-org1.card
+
+rm -rf /tmp/.org1onlyconnection.json
+rm -rf /tmp/.org1connection.json
+
+cat << EOF > /tmp/.org2onlyconnection.json
 {
-    "name": "hlfv1",
+    "name": "byfn-network-org2-only",
     "type": "hlfv1",
     "orderers": [
-       { "url" : "grpc://localhost:7050" }
+        {
+            "url" : "grpc://localhost:7050",
+            "hostnameOverride": "orderer.example.com"
+        }
     ],
-    "ca": { 
-        "url": "http://localhost:7054", 
-        "name": "ca.org2.example.com"
+    "ca": {
+        "url": "http://192.168.1.224:7054",
+        "name": "ca.org2.example.com",
+        "hostnameOverride": "ca.org2.example.com"
     },
     "peers": [
         {
             "requestURL": "grpc://192.168.1.224:10051",
-            "eventURL": "grpc://192.168.1.224:10053"
+            "eventURL": "grpc://192.168.1.224:10053",
+            "hostnameOverride": "peer0.org2.example.com"
         }, {
             "requestURL": "grpc://192.168.1.224:11051",
-            "eventURL": "grpc://192.168.1.224:11053"
+            "eventURL": "grpc://192.168.1.224:11053",
+            "hostnameOverride": "peer1.org2.example.com"
+
         }, {
             "requestURL": "grpc://192.168.1.224:12051",
-            "eventURL": "grpc://192.168.1.224:12053"
+            "eventURL": "grpc://192.168.1.224:12053",
+            "hostnameOverride": "peer2.org2.example.com"
+        }
+    ],
+    "channel": "composerchannel",
+    "mspID": "Org2MSP",
+    "timeout": 300
+}
+EOF
+
+cat << EOF > /tmp/.org2connection.json
+{
+    "name": "byfn-network-org2",
+    "type": "hlfv1",
+    "orderers": [
+        {
+            "url" : "grpc://localhost:7050",
+            "hostnameOverride": "orderer.example.com"
+        }
+    ],
+    "ca": {
+        "url": "http://192.168.1.224:7054",
+        "name": "ca.org2.example.com",
+        "hostnameOverride": "ca.org2.example.com"
+    },
+    "peers": [
+        {
+            "requestURL": "grpc://localhost:7051",
+            "eventURL": "grpc://localhost:7053",
+            "hostnameOverride": "peer0.org1.example.com"
+        }, {
+            "requestURL": "grpc://localhost:8051",
+            "eventURL": "grpc://localhost:8053",
+            "hostnameOverride": "peer1.org1.example.com"
+        }, {
+            "requestURL": "grpc://localhost:9051",
+            "eventURL": "grpc://localhost:9053",
+            "hostnameOverride": "peer2.org1.example.com"
+        }, {
+            "requestURL": "grpc://192.168.1.224:10051",
+            "eventURL": "grpc://192.168.1.224:10053",
+            "hostnameOverride": "peer0.org2.example.com"
+        }, {
+            "requestURL": "grpc://192.168.1.224:11051",
+            "eventURL": "grpc://192.168.1.224:11053",
+            "hostnameOverride": "peer1.org2.example.com"
+
+        }, {
+            "requestURL": "grpc://192.168.1.224:12051",
+            "eventURL": "grpc://192.168.1.224:12053",
+            "hostnameOverride": "peer2.org2.example.com"
         }
     ],
     "channel": "composerchannel",
@@ -93,14 +215,23 @@ EOF
 PRIVATE_KEY="${DIR}"/composer/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore/898c2eb7eabc56b35a5d1d53cb6c0ce0fa2ec2c40a0f3ff6250f46f9c31676c7_sk
 CERT="${DIR}"/composer/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/Admin@org2.example.com-cert.pem
 
-if composer card list -n Org2@hlfv1 > /dev/null; then
-    composer card delete -n Org2@hlfv1
+
+if composer card list -n @byfn-network-org2-only > /dev/null; then
+    composer card delete -n @byfn-network-org2-only
 fi
-composer card create -p /tmp/.connection.json -u Org2 -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file /tmp/Org2@hlfv1.card
-composer card import --file /tmp/Org2@hlfv1.card 
 
-rm -rf /tmp/.connection.json
+if composer card list -n @byfn-network-org2 > /dev/null; then
+    composer card delete -n @byfn-network-org2
+fi
 
+composer card create -p /tmp/.org2onlyconnection.json -u PeerAdmin -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file /tmp/PeerAdmin@byfn-network-org2-only.card
+composer card import --file /tmp/PeerAdmin@byfn-network-org2-only.card
+
+composer card create -p /tmp/.org2connection.json -u PeerAdmin -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file /tmp/PeerAdmin@byfn-network-org2.card
+composer card import --file /tmp/PeerAdmin@byfn-network-org2.card
+
+rm -rf /tmp/.org2onlyconnection.json
+rm -rf /tmp/.org2connection.json
 
 echo "Hyperledger Composer PeerAdmin card has been imported"
 composer card list
