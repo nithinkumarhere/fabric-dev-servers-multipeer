@@ -25,7 +25,7 @@ resource "aws_subnet" "fabric-subnet" {
 }
 
 resource "aws_security_group" "allow_http" {
-  name        = "${var.name} allow_http"
+  name        = "allow_http"
   description = "Allow HTTP traffic"
   vpc_id      = "${aws_vpc.fabric-vpc.id}"
 
