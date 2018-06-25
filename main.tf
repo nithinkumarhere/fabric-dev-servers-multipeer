@@ -21,8 +21,9 @@ resource "aws_vpc" "fabric-vpc" {
 resource "aws_subnet" "fabric-subnet" {
     vpc_id      = "${aws_vpc.fabric-vpc.id}"
     cidr_block  = "192.168.1.1/24"
+    availability_zone = "us-east-1a"
     tags {
-        Name="public-subnet"
+        Name="fabric-subnet"
     }
 }
 resource "aws_security_group" "allow_http" {
