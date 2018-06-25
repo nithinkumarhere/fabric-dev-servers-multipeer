@@ -79,15 +79,6 @@ After this continue on the first machine.
 ### Create the Composer profile on the First Machine and start Composer Playground
 ```
 ./createPeerAdminCard.sh
-composer runtime install -c PeerAdmin@byfn-network-org1-only -n trade-network
-composer runtime install -c PeerAdmin@byfn-network-org2-only -n trade-network
-composer identity request -c PeerAdmin@byfn-network-org1-only -u admin -s adminpw -d alice
-composer identity request -c PeerAdmin@byfn-network-org2-only -u admin -s adminpw -d bob
-composer network start -c PeerAdmin@byfn-network-org1 -a trade-network.bna -o endorsementPolicyFile=endorsement-policy.json -A alice -C alice/admin-pub.pem -A bob -C bob/admin-pub.pem
-composer card create -p org1connection.json -u alice -n trade-network -c alice/admin-pub.pem -k alice/admin-priv.pem
-composer card import -f alice@trade-network.card
-composer card create -p org2connection.json -u bob -n trade-network -c bob/admin-pub.pem -k bob/admin-priv.pem
-composer card import -f bob@trade-network.card
 composer-playground
 ```
 
