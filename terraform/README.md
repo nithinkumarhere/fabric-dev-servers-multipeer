@@ -27,7 +27,26 @@ On the machine 'ubuntu@192.168.1.224' run:
 On the machine 'ubuntu@192.168.1.222' run:
 ```
 ./createPeerAdminCard.sh
-nohup composer-playground &
+nohup composer-playground -p 8181 &
+cd ..
+git clone https://github.com/InflatibleYoshi/blockchain-explorer
+sudo apt install postgresql postgresql-contrib
+cd blockchain-explorer
+git checkout release-3.1
+sudo -u postgres psql
+\i app/db/explorerpg.sql
+\i app/db/updatepg.sql
+\q
+npm install
+cd app/test
+npm install
+npm run test
+cd ../../client
+npm install
+npm test -- -u –coverage
+npm run build
+cd ..
+./start.sh
 ```
 
-You will find composer at the Hostname of the instance you ran composer playground on at hostnameofAWSEC2instance:8080.
+You will find composer at the Hostname of the instance you ran composer playground on at hostnameofAWSEC2instance:8181 and blockchain explorer on port 8080

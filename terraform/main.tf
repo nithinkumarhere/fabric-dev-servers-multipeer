@@ -22,7 +22,7 @@ resource "aws_key_pair" "auth" {
 resource "aws_instance" "fabric" {
   count                  = 2
   private_ip             = "${lookup(var.instance_ips, count.index)}"
-  ami                    = "ami-3fc69b40"
+  ami                    = "ami-17f6ab68"
   instance_type          = "t2.large"
   key_name               = "default"
   subnet_id              = "${aws_subnet.fabric-subnet.id}"
