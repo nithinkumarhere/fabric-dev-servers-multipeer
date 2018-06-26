@@ -226,3 +226,13 @@ rm -rf org2onlyconnection.json
 echo "Hyperledger Composer PeerAdmin card has been imported"
 composer card list
 
+composer runtime install -c PeerAdmin@byfn-network-org1-only -n trade-network
+composer runtime install -c PeerAdmin@byfn-network-org2-only -n trade-network
+composer identity request -c PeerAdmin@byfn-network-org1-only -u admin -s admin$
+composer identity request -c PeerAdmin@byfn-network-org2-only -u admin -s admin$
+composer network start -c PeerAdmin@byfn-network-org1 -a trade-network.bna -o e$
+composer card create -p org1connection.json -u alice -n trade-network -c alice/$
+composer card import -f alice@trade-network.card
+composer card create -p org2connection.json -u bob -n trade-network -c bob/admi$
+composer card import -f bob@trade-network.card
+
