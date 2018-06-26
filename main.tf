@@ -25,7 +25,6 @@ resource "aws_instance" "fabric" {
   ami                    = "ami-a5633eda"
   instance_type          = "t2.micro"
   key_name               = "default"
-  ebs_optimized          = true
   subnet_id              = "${aws_subnet.fabric-subnet.id}"
   vpc_security_group_ids = ["${aws_security_group.allow_http.id}"]
 }
