@@ -22,8 +22,8 @@ resource "aws_key_pair" "auth" {
 resource "aws_instance" "fabric" {
   count                  = 2
   private_ip             = "${lookup(var.instance_ips, count.index)}"
-  ami                    = "ami-a5633eda"
-  instance_type          = "t2.micro"
+  ami                    = "ami-3fc69b40"
+  instance_type          = "t2.large"
   key_name               = "default"
   subnet_id              = "${aws_subnet.fabric-subnet.id}"
   vpc_security_group_ids = ["${aws_security_group.allow_http.id}"]
