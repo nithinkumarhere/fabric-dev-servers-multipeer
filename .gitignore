@@ -1,1 +1,5 @@
 **/composer-logs/*
+.terraform/plugins/linux_amd64/lock.json
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/plugins/linux_amd64/terraform-provider-aws_v1.24.0_x4
