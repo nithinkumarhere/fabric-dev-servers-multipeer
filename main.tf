@@ -1,3 +1,7 @@
+provider "aws" {
+  region = "us-east-1"
+}
+
 variable "instance_ips" {
   default = {
     "0" = "192.168.1.222"
