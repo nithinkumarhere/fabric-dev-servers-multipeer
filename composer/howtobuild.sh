@@ -4,7 +4,13 @@ HOST1="192.168.1.222"
 HOST2="192.168.1.224"
 
 sed -i -e "s/{IP-HOST-1}/$HOST1/g" configtx.yaml
+sed -i -e "s/{IP-HOST-1}/$HOST1/g" crypto-config.yaml
+sed -i -e "s/{IP-HOST-1}/$HOST1/g" docker-compose.yml
+sed -i -e "s/{IP-HOST-1}/$HOST1/g" docker-compose-peer2.yml
+
+sed -i -e "s/{IP-HOST-1}/$HOST1/g" ../startFabric.sh
 sed -i -e "s/{IP-HOST-1}/$HOST1/g" ../startFabric-Peer2.sh
+sed -i -e "s/{IP-HOST-1}/$HOST1/g" ../createPeerAdminCard.sh
 sed -i -e "s/{IP-HOST-2}/$HOST2/g" ../createPeerAdminCard.sh
 
 cryptogen generate --config=./crypto-config.yaml

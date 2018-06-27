@@ -32,7 +32,7 @@ cat << EOF > org1onlyconnection.json
     "orderers": [
         {
             "url" : "grpc://localhost:7050",
-            "hostnameOverride" : "orderer.example.com"
+            "hostnameOverride" : "{IP-HOST-1}"
         }
     ],
     "ca": {
@@ -68,7 +68,7 @@ cat << EOF > org1connection.json
     "orderers": [
         {
             "url" : "grpc://localhost:7050",
-            "hostnameOverride" : "orderer.example.com"
+            "hostnameOverride" : "{IP-HOST-1}"
         }
     ],
     "ca": {
@@ -90,13 +90,13 @@ cat << EOF > org1connection.json
             "eventURL": "grpc://localhost:9053",
             "hostnameOverride": "peer2.org1.example.com"
         }, {
-            "requestURL": "grpc://{IP-HOST-1}:10051",
+            "requestURL": "grpc://{IP-HOST-2}:10051",
             "hostnameOverride": "peer0.org2.example.com"
         }, {
-            "requestURL": "grpc://{IP-HOST-1}:11051",
+            "requestURL": "grpc://{IP-HOST-2}:11051",
             "hostnameOverride": "peer1.org2.example.com"
         }, {
-            "requestURL": "grpc://{IP-HOST-1}:12051",
+            "requestURL": "grpc://{IP-HOST-2}:12051",
             "hostnameOverride": "peer2.org2.example.com"
         }
     ],
@@ -132,27 +132,27 @@ cat << EOF > org2onlyconnection.json
     "orderers": [
         {
             "url" : "grpc://localhost:7050",
-            "hostnameOverride": "orderer.example.com"
+            "hostnameOverride": "{IP-HOST-1}"
         }
     ],
     "ca": {
-        "url": "http://{IP-HOST-1}:7054",
+        "url": "http://{IP-HOST-2}:7054",
         "name": "ca.org2.example.com",
         "hostnameOverride": "ca.org2.example.com"
     },
     "peers": [
         {
-            "requestURL": "grpc://{IP-HOST-1}:10051",
-            "eventURL": "grpc://{IP-HOST-1}:10053",
+            "requestURL": "grpc://{IP-HOST-2}:10051",
+            "eventURL": "grpc://{IP-HOST-2}:10053",
             "hostnameOverride": "peer0.org2.example.com"
         }, {
-            "requestURL": "grpc://{IP-HOST-1}:11051",
-            "eventURL": "grpc://{IP-HOST-1}:11053",
+            "requestURL": "grpc://{IP-HOST-2}:11051",
+            "eventURL": "grpc://{IP-HOST-2}:11053",
             "hostnameOverride": "peer1.org2.example.com"
 
         }, {
-            "requestURL": "grpc://{IP-HOST-1}:12051",
-            "eventURL": "grpc://{IP-HOST-1}:12053",
+            "requestURL": "grpc://{IP-HOST-2}:12051",
+            "eventURL": "grpc://{IP-HOST-2}:12053",
             "hostnameOverride": "peer2.org2.example.com"
         }
     ],
@@ -169,11 +169,11 @@ cat << EOF > org2connection.json
     "orderers": [
         {
             "url" : "grpc://localhost:7050",
-            "hostnameOverride": "orderer.example.com"
+            "hostnameOverride": "{IP-HOST-1}"
         }
     ],
     "ca": {
-        "url": "http://{IP-HOST-1}:7054",
+        "url": "http://{IP-HOST-2}:7054",
         "name": "ca.org2.example.com",
         "hostnameOverride": "ca.org2.example.com"
     },
@@ -188,16 +188,16 @@ cat << EOF > org2connection.json
             "requestURL": "grpc://localhost:9051",
             "hostnameOverride": "peer2.org1.example.com"
         }, {
-            "requestURL": "grpc://{IP-HOST-1}:10051",
-            "eventURL": "grpc://{IP-HOST-1}:10053",
+            "requestURL": "grpc://{IP-HOST-2}:10051",
+            "eventURL": "grpc://{IP-HOST-2}:10053",
             "hostnameOverride": "peer0.org2.example.com"
         }, {
-            "requestURL": "grpc://{IP-HOST-1}:11051",
-            "eventURL": "grpc://{IP-HOST-1}:11053",
+            "requestURL": "grpc://{IP-HOST-2}:11051",
+            "eventURL": "grpc://{IP-HOST-2}:11053",
             "hostnameOverride": "peer1.org2.example.com"
         }, {
-            "requestURL": "grpc://{IP-HOST-1}:12051",
-            "eventURL": "grpc://{IP-HOST-1}:12053",
+            "requestURL": "grpc://{IP-HOST-2}:12051",
+            "eventURL": "grpc://{IP-HOST-2}:12053",
             "hostnameOverride": "peer2.org2.example.com"
         }
     ],

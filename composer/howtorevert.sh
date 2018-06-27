@@ -4,8 +4,14 @@ HOST1="192.168.1.222"
 HOST2="192.168.1.224"
 
 sed -i -e "s/$HOST1/{IP-HOST-1}/g" configtx.yaml
+sed -i -e "s/$HOST1/{IP-HOST-1}/g" crypto-config.yaml
+sed -i -e "s/$HOST1/{IP-HOST-1}/g" docker-compose.yml
+sed -i -e "s/$HOST1/{IP-HOST-1}/g" docker-compose-peer2.yml
+
+sed -i -e "s/$HOST1/{IP-HOST-1}/g" ../startFabric.sh
 sed -i -e "s/$HOST1/{IP-HOST-1}/g" ../startFabric-Peer2.sh
-sed -i -e "s/$HOST2/{IP-HOST-1}/g" ../createPeerAdminCard.sh
+sed -i -e "s/$HOST1/{IP-HOST-1}/g" ../createPeerAdminCard.sh
+sed -i -e "s/$HOST2/{IP-HOST-2}/g" ../createPeerAdminCard.sh
 
 ORG1KEY="$(ls crypto-config/peerOrganizations/org1.example.com/ca/ | grep 'sk$')"
 ORG2KEY="$(ls crypto-config/peerOrganizations/org2.example.com/ca/ | grep 'sk$')"

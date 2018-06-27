@@ -37,8 +37,8 @@ services:
       - 7050:7050
     volumes:
         - ./:/etc/hyperledger/configtx
-        - ./crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp:/etc/hyperledger/msp/orderer/msp
-        - ./crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls:/etc/hyperledger/tls/orderer/tls
+        - ./crypto-config/ordererOrganizations/{IP-HOST-1}/msp:/etc/hyperledger/msp/orderer/msp
+        - ./crypto-config/ordererOrganizations/{IP-HOST-1}/users/Admin@{IP-HOST-1}/tls/:/etc/hyperledger/tls/orderer/tls
   peer0.org1.example.com:
     container_name: peer0.org1.example.com
     image: hyperledger/fabric-peer:$ARCH-1.0.4
@@ -73,7 +73,7 @@ services:
         - ./crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp:/etc/hyperledger/peer/msp
         - ./crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls:/etc/hyperledger/peer/tls
         - ./crypto-config/peerOrganizations/org1.example.com/users:/etc/hyperledger/msp/users
-        - ./crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp/:/etc/hyperledger/orderer/msp/
+        - ./crypto-config/ordererOrganizations/{IP-HOST-1}/msp/:/etc/hyperledger/orderer/msp/
     depends_on:
       - orderer.example.com
       - couchdb
@@ -121,7 +121,7 @@ services:
         - ./crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp:/etc/hyperledger/peer/msp
         - ./crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls:/etc/hyperledger/peer/tls
         - ./crypto-config/peerOrganizations/org1.example.com/users:/etc/hyperledger/msp/users
-        - ./crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp/:/etc/hyperledger/orderer/msp/
+        - ./crypto-config/ordererOrganizations/{IP-HOST-1}/msp/:/etc/hyperledger/orderer/msp/
     depends_on:
       - orderer.example.com
       - couchdb1
@@ -168,7 +168,7 @@ services:
         - ./crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/msp:/etc/hyperledger/peer/msp
         - ./crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/tls:/etc/hyperledger/peer/tls
         - ./crypto-config/peerOrganizations/org1.example.com/users:/etc/hyperledger/msp/users
-        - ./crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp/:/etc/hyperledger/orderer/msp/
+        - ./crypto-config/ordererOrganizations/{IP-HOST-1}/msp/:/etc/hyperledger/orderer/msp/
     depends_on:
       - orderer.example.com
       - couchdb2
