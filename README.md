@@ -76,10 +76,28 @@ On the second machine run
 
 After this continue on the first machine.
 
-### Create the Composer profile on the First Machine and start Composer Playground
+### Create the Composer profile on the First Machine and start Composer Playground and Blockchain Explorer
 ```
 ./createPeerAdminCard.sh
-composer-playground
+nohup composer-playground -p 8181 &
+cd ..
+git clone https://github.com/InflatibleYoshi/blockchain-explorer
+sudo apt install postgresql postgresql-contrib
+cd blockchain-explorer
+git checkout release-3
+sudo -u postgres psql
+\i app/db/explorerpg.sql
+\q
+npm install
+cd app/test
+npm install
+npm run test
+cd ../../client
+npm install
+npm test -- -u –coverage
+npm run build
+cd ..
+./start.sh
 ```
 
 At this point you should be able to navigate a browser to http:/{HOST1-DOMAIN/IP}:8080 and connect to either alice or bob's trade network instances.
