@@ -85,6 +85,9 @@ git clone https://github.com/InflatibleYoshi/blockchain-explorer
 sudo apt install postgresql postgresql-contrib
 cd blockchain-explorer
 git checkout release-3
+```
+Edit config.json with the correct tlscerts path. You do not need them functionally but they are there because there have been reported issues when not including the tls certs.
+```
 sudo -u postgres psql
 \i app/db/explorerpg.sql
 \q

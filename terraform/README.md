@@ -32,10 +32,9 @@ cd ..
 git clone https://github.com/InflatibleYoshi/blockchain-explorer
 sudo apt install postgresql postgresql-contrib
 cd blockchain-explorer
-git checkout release-3.1
+git checkout release-3
 sudo -u postgres psql
 \i app/db/explorerpg.sql
-\i app/db/updatepg.sql
 \q
 npm install
 cd app/test
