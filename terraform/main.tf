@@ -22,7 +22,7 @@ resource "aws_key_pair" "auth" {
 resource "aws_instance" "fabric" {
   count                  = 2
   private_ip             = "${lookup(var.instance_ips, count.index)}"
-  ami                    = "ami-17f6ab68"
+  ami                    = "ami-02e116fc9cc15c35c"
   instance_type          = "t2.large"
   key_name               = "default"
   subnet_id              = "${aws_subnet.fabric-subnet.id}"
@@ -81,6 +81,13 @@ resource "aws_security_group" "allow_http" {
   ingress {
     from_port   = 8080
     to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 3000
+    to_port     = 3000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }

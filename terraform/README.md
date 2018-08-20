@@ -50,3 +50,20 @@ cd ..
 
 
 You will find composer at the Hostname of the instance you ran composer playground on at hostnameofAWSEC2instance:8181 and blockchain explorer on port 8080
+
+To run the Composer REST API:
+```
+npm install -g composer-rest-server@0.16.6
+composer-rest-server
+
+? Enter the name of the business network card to use: alice@trade-network
+? Specify if you want namespaces in the generated REST API: always use namespace
+s
+? Specify if you want to enable authentication for the REST API using Passport: 
+No
+? Specify if you want to enable event publication over WebSockets: Yes
+? Specify if you want to enable TLS security for the REST API: No
+
+```
+You will find the REST API at port 3000 of the AWS instance you created
+
