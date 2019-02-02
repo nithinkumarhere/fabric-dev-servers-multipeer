@@ -1,4 +1,4 @@
-# Multi Machine Fabric Setup: Org on each Machine
+# Multi Node(machine) Fabric Setup: Org on each Machine
 
 #### Here are the full terminal instructions starting from a basic Ubuntu 18.04 install 
 
