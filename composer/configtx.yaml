@@ -25,6 +25,8 @@ Profiles:
                     - *Org1
                     - *Org2
                     - *Org3
+                    - *Org4
+                    - *Org5
     ComposerChannel:
         Consortium: ComposerConsortium
         Application:
@@ -33,6 +35,8 @@ Profiles:
                 - *Org1
                 - *Org2
                 - *Org3
+                - *Org4
+                - *Org5
 
 ################################################################################
 #
@@ -120,6 +124,45 @@ Organizations:
             - Host: peer0.org3.example.com
               Port: 7051
 
+    - &Org4
+        # DefaultOrg defines the organization which is used in the sampleconfig
+        # of the fabric.git development environment
+        Name: Org4
+
+        # ID to load the MSP definition as
+        ID: Org4MSP
+
+        MSPDir: crypto-config/peerOrganizations/org4.example.com/msp
+
+        # turn off security for the peer
+        AdminPrincipal: Role.MEMBER
+
+        AnchorPeers:
+            # AnchorPeers defines the location of peers which can be used
+            # for cross org gossip communication.  Note, this value is only
+            # encoded in the genesis block in the Application section context
+            - Host: peer0.org4.example.com
+              Port: 7051
+              
+    - &Org5
+        # DefaultOrg defines the organization which is used in the sampleconfig
+        # of the fabric.git development environment
+        Name: Org5
+
+        # ID to load the MSP definition as
+        ID: Org5MSP
+
+        MSPDir: crypto-config/peerOrganizations/org5.example.com/msp
+
+        # turn off security for the peer
+        AdminPrincipal: Role.MEMBER
+
+        AnchorPeers:
+            # AnchorPeers defines the location of peers which can be used
+            # for cross org gossip communication.  Note, this value is only
+            # encoded in the genesis block in the Application section context
+            - Host: peer0.org5.example.com
+              Port: 7051
 
 ################################################################################
 #
