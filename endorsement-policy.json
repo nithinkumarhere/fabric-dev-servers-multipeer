@@ -17,10 +17,22 @@
                 "name": "member",
                 "mspId": "Org3MSP"
             }
+        },
+        {
+            "role": {
+                "name": "member",
+                "mspId": "Org4MSP"
+            }
+        },
+        {
+            "role": {
+                "name": "member",
+                "mspId": "Org5MSP"
+            }
         }
     ],
     "policy": {
-        "3-of": [
+        "5-of": [
             {
                 "signed-by": 0
             },
@@ -29,6 +41,12 @@
             },
             {
                 "signed-by": 2
+            },
+            {
+                "signed-by": 3
+            },
+            {
+                "signed-by": 4
             }
         ]
     }
