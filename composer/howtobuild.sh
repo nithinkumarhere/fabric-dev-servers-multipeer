@@ -1,10 +1,10 @@
 cd "$(dirname "$0")"
 
-HOST1="192.168.1.222"
-HOST2="192.168.1.224"
-HOST3="192.168.1.224"
-HOST4="192.168.1.224"
-HOST5="192.168.1.224"
+HOST1="35.202.81.248"
+HOST2="34.73.154.41"
+HOST3="35.245.145.188"
+HOST4="35.230.15.160"
+HOST5="35.236.59.78"
 
 sed -i -e "s/{IP-HOST-1}/$HOST1/g" configtx.yaml
 sed -i -e "s/{IP-HOST-1}/$HOST1/g" ../startFabric-Peer2.sh
@@ -16,10 +16,10 @@ sed -i -e "s/{IP-HOST-3}/$HOST3/g" ../createPeerAdminCard.sh
 sed -i -e "s/{IP-HOST-4}/$HOST4/g" ../createPeerAdminCard.sh
 sed -i -e "s/{IP-HOST-5}/$HOST5/g" ../createPeerAdminCard.sh
 
-cryptogen generate --config=./crypto-config.yaml
+~/fabric-binaries/bin/cryptogen generate --config=./crypto-config.yaml
 export FABRIC_CFG_PATH=$PWD
-configtxgen -profile ComposerOrdererGenesis -outputBlock ./composer-genesis.block
-configtxgen -profile ComposerChannel -outputCreateChannelTx ./composer-channel.tx -channelID composerchannel
+~/fabric-binaries/bin/configtxgen -profile ComposerOrdererGenesis -outputBlock ./composer-genesis.block
+~/fabric-binaries/bin/configtxgen -profile ComposerChannel -outputCreateChannelTx ./composer-channel.tx -channelID composerchannel
 
 ORG1KEY="$(ls crypto-config/peerOrganizations/org1.example.com/ca/ | grep 'sk$')"
 ORG2KEY="$(ls crypto-config/peerOrganizations/org2.example.com/ca/ | grep 'sk$')"
