@@ -55,7 +55,7 @@ curl -sSL https://goo.gl/byy2Qj | bash -s 1.0.4
 mkdir fabric-binaries
 mv bin fabric-binaries/bin
 echo 'export PATH=~/fabric-binaries/bin:$PATH' >> ~/.profile
-git clone https://github.com/InflatibleYoshi/fabric-dev-servers-multipeer
+git clone https://github.com/nithinkumarhere/fabric-dev-servers-multipeer.git
 cd fabric-dev-servers-multipeer
 cd composer
 nano howtobuild.sh //Replace the IP addresses in HOST1 and HOST2 with your own IPs or FQDNs
