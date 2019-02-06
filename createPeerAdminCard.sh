@@ -82,15 +82,15 @@ cat << EOF > org1connection.json
     "peers": [
         {
             "requestURL": "grpc://localhost:7051",
-            "eventURL": "grpc://localhost:10053",
+            "eventURL": "grpc://localhost:7053",
             "hostnameOverride": "peer0.org1.example.com"
         }, {
             "requestURL": "grpc://localhost:8051",
-            "eventURL": "grpc://localhost:11053",
+            "eventURL": "grpc://localhost:8053",
             "hostnameOverride": "peer1.org1.example.com"
         }, {
             "requestURL": "grpc://localhost:9051",
-            "eventURL": "grpc://localhost:12053",
+            "eventURL": "grpc://localhost:9053",
             "hostnameOverride": "peer2.org1.example.com"
         }, {
             "requestURL": "grpc://{IP-HOST-2}:10051",
