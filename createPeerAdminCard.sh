@@ -725,19 +725,19 @@ composer runtime install -c PeerAdmin@byfn-network-org2-only -n trade-network
 composer runtime install -c PeerAdmin@byfn-network-org3-only -n trade-network
 composer runtime install -c PeerAdmin@byfn-network-org4-only -n trade-network
 composer runtime install -c PeerAdmin@byfn-network-org5-only -n trade-network
-composer identity request -c PeerAdmin@byfn-network-org1-only -u admin -s adminpw -d NRBlock
-composer identity request -c PeerAdmin@byfn-network-org2-only -u admin -s adminpw -d CentralBank
-composer identity request -c PeerAdmin@byfn-network-org3-only -u admin -s adminpw -d BankA
-composer identity request -c PeerAdmin@byfn-network-org4-only -u admin -s adminpw -d BankB
-composer identity request -c PeerAdmin@byfn-network-org5-only -u admin -s adminpw -d Mobility
-composer network start -c PeerAdmin@byfn-network-org1 -a trade-network.bna -o endorsementPolicyFile=endorsement-policy.json -A NRBlock -C NRBlock/admin-pub.pem -A CentralBank -C CentralBank/admin-pub.pem -A BankA -C BankA/admin-pub.pem -A BankB -C BankB/admin-pub.pem -A Mobility -C Mobility/admin-pub.pem
-composer card create -p org1connection.json -u NRBlock -n trade-network -c NRBlock/admin-pub.pem -k NRBlock/admin-priv.pem
-composer card import -f NRBlock@trade-network.card
-composer card create -p org2connection.json -u CentralBank -n trade-network -c CentralBank/admin-pub.pem -k CentralBank/admin-priv.pem
-composer card import -f CentralBank@trade-network.card
-composer card create -p org3connection.json -u BankA -n trade-network -c BankA/admin-pub.pem -k BankA/admin-priv.pem
-composer card import -f BankA@trade-network.card
-composer card create -p org4connection.json -u BankB -n trade-network -c BankB/admin-pub.pem -k BankB/admin-priv.pem
-composer card import -f BankB@trade-network.card
-composer card create -p org5connection.json -u Mobility -n trade-network -c Mobility/admin-pub.pem -k Mobility/admin-priv.pem
-composer card import -f Mobility@trade-network.card
+composer identity request -c PeerAdmin@byfn-network-org1-only -u admin -s adminpw -d nrblock
+composer identity request -c PeerAdmin@byfn-network-org2-only -u admin -s adminpw -d centralbank
+composer identity request -c PeerAdmin@byfn-network-org3-only -u admin -s adminpw -d banka
+composer identity request -c PeerAdmin@byfn-network-org4-only -u admin -s adminpw -d bankb
+composer identity request -c PeerAdmin@byfn-network-org5-only -u admin -s adminpw -d telecom
+composer network start -c PeerAdmin@byfn-network-org1 -a trade-network.bna -o endorsementPolicyFile=endorsement-policy.json -A nrblock -C nrblock/admin-pub.pem -A centralbank -C centralbank/admin-pub.pem -A banka -C banka/admin-pub.pem -A bankb -C bankb/admin-pub.pem -A telecom -C telecom/admin-pub.pem
+composer card create -p org1connection.json -u nrblock -n trade-network -c nrblock/admin-pub.pem -k nrblock/admin-priv.pem
+composer card import -f nrblock@trade-network.card
+composer card create -p org2connection.json -u centralbank -n trade-network -c centralbank/admin-pub.pem -k centralbank/admin-priv.pem
+composer card import -f centralbank@trade-network.card
+composer card create -p org3connection.json -u banka -n trade-network -c banka/admin-pub.pem -k banka/admin-priv.pem
+composer card import -f banka@trade-network.card
+composer card create -p org4connection.json -u bankb -n trade-network -c bankb/admin-pub.pem -k bankb/admin-priv.pem
+composer card import -f bankb@trade-network.card
+composer card create -p org5connection.json -u telecom -n trade-network -c telecom/admin-pub.pem -k telecom/admin-priv.pem
+composer card import -f telecom@trade-network.card
