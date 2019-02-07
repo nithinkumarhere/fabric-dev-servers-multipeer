@@ -675,24 +675,24 @@ echo "Hyperledger Composer PeerAdmin card has been imported"
 composer card list
 
 
-composer runtime install -c PeerAdmin@byfn-network-org1-only -n kyc-network
-composer runtime install -c PeerAdmin@byfn-network-org2-only -n kyc-network
-composer runtime install -c PeerAdmin@byfn-network-org3-only -n kyc-network
-composer runtime install -c PeerAdmin@byfn-network-org4-only -n kyc-network
-composer runtime install -c PeerAdmin@byfn-network-org5-only -n kyc-network
+composer runtime install -c PeerAdmin@byfn-network-org1-only -n trade-network
+composer runtime install -c PeerAdmin@byfn-network-org2-only -n trade-network
+composer runtime install -c PeerAdmin@byfn-network-org3-only -n trade-network
+composer runtime install -c PeerAdmin@byfn-network-org4-only -n trade-network
+composer runtime install -c PeerAdmin@byfn-network-org5-only -n trade-network
 composer identity request -c PeerAdmin@byfn-network-org1-only -u admin -s adminpw -d nrblock
 composer identity request -c PeerAdmin@byfn-network-org2-only -u admin -s adminpw -d centralbank
 composer identity request -c PeerAdmin@byfn-network-org3-only -u admin -s adminpw -d banka
 composer identity request -c PeerAdmin@byfn-network-org4-only -u admin -s adminpw -d bankb
 composer identity request -c PeerAdmin@byfn-network-org5-only -u admin -s adminpw -d telecom
-composer network start -c PeerAdmin@byfn-network-org1 -a kyc-network.bna -o endorsementPolicyFile=endorsement-policy.json -A nrblock -C nrblock/admin-pub.pem -A centralbank -C centralbank/admin-pub.pem -A banka -C banka/admin-pub.pem -A bankb -C bankb/admin-pub.pem -A telecom -C telecom/admin-pub.pem
-composer card create -p org1connection.json -u nrblock -n kyc-network -c nrblock/admin-pub.pem -k nrblock/admin-priv.pem
-composer card import -f nrblock@kyc-network.card
-composer card create -p org2connection.json -u centralbank -n kyc-network -c centralbank/admin-pub.pem -k centralbank/admin-priv.pem
-composer card import -f centralbank@kyc-network.card
-composer card create -p org3connection.json -u banka -n kyc-network -c banka/admin-pub.pem -k banka/admin-priv.pem
-composer card import -f banka@kyc-network.card
-composer card create -p org4connection.json -u bankb -n kyc-network -c bankb/admin-pub.pem -k bankb/admin-priv.pem
-composer card import -f bankb@kyc-network.card
-composer card create -p org5connection.json -u telecom -n kyc-network -c telecom/admin-pub.pem -k telecom/admin-priv.pem
-composer card import -f telecom@kyc-network.card
+composer network start -c PeerAdmin@byfn-network-org1 -a trade-network.bna -o endorsementPolicyFile=endorsement-policy.json -A nrblock -C nrblock/admin-pub.pem -A centralbank -C centralbank/admin-pub.pem -A banka -C banka/admin-pub.pem -A bankb -C bankb/admin-pub.pem -A telecom -C telecom/admin-pub.pem
+composer card create -p org1connection.json -u nrblock -n trade-network -c nrblock/admin-pub.pem -k nrblock/admin-priv.pem
+composer card import -f nrblock@trade-network.card
+composer card create -p org2connection.json -u centralbank -n trade-network -c centralbank/admin-pub.pem -k centralbank/admin-priv.pem
+composer card import -f centralbank@trade-network.card
+composer card create -p org3connection.json -u banka -n trade-network -c banka/admin-pub.pem -k banka/admin-priv.pem
+composer card import -f banka@trade-network.card
+composer card create -p org4connection.json -u bankb -n trade-network -c bankb/admin-pub.pem -k bankb/admin-priv.pem
+composer card import -f bankb@trade-network.card
+composer card create -p org5connection.json -u telecom -n trade-network -c telecom/admin-pub.pem -k telecom/admin-priv.pem
+composer card import -f telecom@trade-network.card
