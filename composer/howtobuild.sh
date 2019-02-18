@@ -30,6 +30,6 @@ ORG5KEY="$(ls crypto-config/peerOrganizations/org5.example.com/ca/ | grep 'sk$')
 sed -i -e "s/{ORG1-CA-KEY}/$ORG1KEY/g" docker-compose.yml
 sed -i -e "s/{ORG2-CA-KEY}/$ORG2KEY/g" docker-compose-peer2.yml
 sed -i -e "s/{ORG3-CA-KEY}/$ORG3KEY/g" docker-compose-peer3.yml
-sed -i -e "s/{ORG3-CA-KEY}/$ORG4KEY/g" docker-compose-peer4.yml
-sed -i -e "s/{ORG3-CA-KEY}/$ORG5KEY/g" docker-compose-peer5.yml
+sed -i -e "s/{ORG4-CA-KEY}/$ORG4KEY/g" docker-compose-peer4.yml
+sed -i -e "s/{ORG5-CA-KEY}/$ORG5KEY/g" docker-compose-peer5.yml
 
